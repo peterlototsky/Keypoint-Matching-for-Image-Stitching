@@ -28,23 +28,6 @@ if __name__ == '__main__':
     image_2 = cv2.imread(os.path.join(current_dir, sample_input_dir, Sample_2))
     image_3 = cv2.imread(os.path.join(current_dir, sample_input_dir, Sample_3))
 
-    ''' Matching Demonstrations
-    print('Part2a')
-    warped_image_1 = _kp_match.homography(image_1)
-    display_image('Transformed Image', warped_image_1)
-    
-    print('part2b')
-    keypoint_1, descriptor_1 = _kp_match.find(image_1)
-    keypoint_2, descriptor_2 = _kp_match.find(warped_image_1)
-    valid_points, valid_matches = _kp_match.match(descriptor_1, descriptor_2)
-    image_matches = _kp_match.output_mapping(image_1, keypoint_1, warped_image_1, keypoint_2, valid_matches)
-    display_image('Keypoint Matches', image_matches)
-    
-    print('part2c')
-    accuracy = _kp_match.calculate_accuracy(keypoint_1, keypoint_2, valid_matches)
-    print("Accuracy: " + str(accuracy))
-    '''
-
     # Calculate H for image 1 -> image 2
     display_image('Image 1', image_1)
     display_image('Image 2', image_2)
@@ -55,22 +38,18 @@ if __name__ == '__main__':
     valid_points, valid_matches = _kp_match.match(descriptor_1, descriptor_2)
     H_1 = _kp_match.calculate_homography(keypoint_1, keypoint_2, valid_points)
     print(H_1)
-    # warped_image_1 = _kp_match.homography_custom(image_1, H_1)
-    # display_image('image1_image2', warped_image_1)
-    # Blend image 1 and 2
+
     pano_left = _kp_match.blending(image_1, image_2, H_1)
     cv2.imwrite(os.path.join(current_dir, sample_output_dir, pano_left_path), pano_left)
     # Calculate H for image 3 -> image 2 / image 1
     pano_left = cv2.imread(os.path.join(current_dir, sample_output_dir, pano_left_path)) # reload pano_left
-    display_image('pano_left', pano_left)
+
     keypoint_3, descriptor_3 = _kp_match.find(image_3)
     keypoint_4, descriptor_4 = _kp_match.find(pano_left)
     valid_points, valid_matches = _kp_match.match(descriptor_3, descriptor_4)
     H_2 = _kp_match.calculate_homography(keypoint_3, keypoint_4, valid_points)
     print(H_2)
-    # warped_image_2 = _kp_match.homography_custom(image_3, H_2)
-    # display_image('image1_image3', warped_image_2)
-    # Blend image 4 and 2 / 1
+
     pano_full = _kp_match.blending(image_3, pano_left, H_2, 'right')
     cv2.imwrite(os.path.join(current_dir, sample_output_dir, pano_full_path), pano_full)
     pano_full = cv2.imread(os.path.join(current_dir, sample_output_dir, pano_full_path))
