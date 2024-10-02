@@ -6,8 +6,6 @@ This repository contains an implementation of image stitching using keypoint mat
 
 ## Overview
 
-Image stitching is the process of combining multiple overlapping images to produce a larger, often panoramic, view. This is achieved by detecting keypoints in the images, matching them across overlapping areas, and using these matches to align and blend the images seamlessly.
-
 ### Key Steps in the Process
 
 1. **Keypoint Detection with SIFT:**
@@ -28,13 +26,13 @@ Image stitching is the process of combining multiple overlapping images to produ
 
 ## Requirements
 
-To run this project, you will need the following dependencies:
+To run this project, you will need the following packages:
 
 - OpenCV (for image processing)
 - NumPy (for matrix calculations)
 - Matplotlib (for visualization, if necessary)
 
-You can install these dependencies using the following command:
+You can install these packages using the following command:
 
 ```bash
 pip install opencv-python numpy matplotlib
@@ -56,14 +54,5 @@ cd Keypoint-Matching-for-Image-Stitching
 ```bash
 python main.py
 ```
-
-## Example
-
-Here’s a simple example of how the program works:
-
-1. Two overlapping images are taken as input.
-2. SIFT detects keypoints in both images.
-3. Keypoints are matched, and a homography matrix is calculated.
-4. The images are warped and stitched to produce a panoramic view.
 
 ---
