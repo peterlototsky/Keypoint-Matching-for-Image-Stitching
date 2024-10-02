@@ -1,6 +1,6 @@
 ---
 
-# Keypoint Matching for Image Stitching
+# SIFT Keypoint Panaramic Image Stitching
 
 This repository contains an implementation of image stitching using keypoint matching, primarily leveraging the SIFT (Scale-Invariant Feature Transform) algorithm. The goal of this project is to stitch multiple images together into a single panoramic image.
 
